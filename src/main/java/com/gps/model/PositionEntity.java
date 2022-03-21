@@ -9,15 +9,20 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-public class PositionEntity extends PositionDTO {
+public class PositionEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String deviceId;
+    private Integer latitiude;
+    private Integer longitude;
     private Timestamp positionTime;
 
-    public PositionEntity(String deviceId, int latitiude, int longitude) {
-        super(deviceId, latitiude, longitude);
+    public PositionEntity(String deviceId, Integer latitiude, Integer longitude) {
+        this.deviceId = deviceId;
+        this.latitiude = latitiude;
+        this.longitude = longitude;
         this.positionTime = new Timestamp(new Date().getTime());
     }
 
@@ -31,6 +36,30 @@ public class PositionEntity extends PositionDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Integer getLatitiude() {
+        return latitiude;
+    }
+
+    public void setLatitiude(Integer latitiude) {
+        this.latitiude = latitiude;
+    }
+
+    public Integer getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Integer longitude) {
+        this.longitude = longitude;
     }
 
     public Timestamp getPositionTime() {
