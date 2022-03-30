@@ -25,17 +25,15 @@ public class PositionServiceTestIT {
 
 
     @Test
-    void shouldSavePosition() {
-        PositionEntity positionEntity = positionService.addPosition(new PositionDTO("12345",12345,12345));
-
-        assertThat(positionEntity.getId()).isPositive();
-    }
-
-    @Test
     void shouldFindPosition() {
-        positionService.addPosition(new PositionDTO("12345",12345,12345));
+        positionService.save(new PositionDTO("12345",12345.0,12345.0));
 
         assertThat(positionRepository.findById(2L)).isNotEmpty();
+    }
+    @Test
+    void shouldSavePosition(){
+        PositionDTO positionDTO = positionService.save(new PositionDTO("12345",12345.0,12345.0));
+        assertThat(positionDTO.getLongitude()).isPositive();
     }
 
 }

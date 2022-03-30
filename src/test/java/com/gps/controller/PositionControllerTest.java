@@ -36,7 +36,6 @@ class PositionControllerTest {
         mockMvc.perform(post("/save/position/").contentType(MediaType.APPLICATION_JSON_VALUE).content("{'deviceId':'12345', 'latitiude': 12345, 'longitude': 12345}"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.positionTime", notNullValue()))
                 .andExpect(jsonPath("$.deviceId",containsString("12345")))
                 .andExpect(jsonPath("$.latitiude",notNullValue()))
                 .andExpect(jsonPath("$.longitude",notNullValue()));

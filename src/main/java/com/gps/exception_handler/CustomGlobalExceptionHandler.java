@@ -37,7 +37,9 @@ public class CustomGlobalExceptionHandler {
         List<FieldError> errorss = ex.getBindingResult().getFieldErrors();
 
         for (FieldError error : errorss) {
-            log.error("invalid " + error.getField() + " [" + error.getDefaultMessage() + "]");
+            log.error(String.format("invalid %s [%s]",
+                    error.getField(),
+                    error.getDefaultMessage()));
         }
 
         return ResponseEntity

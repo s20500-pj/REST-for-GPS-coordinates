@@ -25,19 +25,18 @@ class PositionServiceTest {
     @Test
     void canSavePosition(){
         //Given
-        PositionEntity positionEntity = new PositionEntity("12345",12345,12345);
-        when(positionRepository.save(positionEntity)).thenReturn(new PositionEntity("12345",12345,12345));
+        PositionDTO positionDTO= new PositionDTO("12345",12345.0,12345.0);
         //When
-        PositionEntity positionEntity2 = positionService.save(positionEntity);
+        PositionDTO positionDTO1 = positionService.save(new PositionDTO("12345",12345.0,12345.0));
         //Then
-        assertThat(positionEntity2.getDeviceId()).isEqualTo("12345");
+        assertThat(positionDTO1.getDeviceId()).isEqualTo("12345");
     }
     @Test
     void canAddPosition(){
         //given
-        PositionEntity positionEntity = new PositionEntity("12345",12345,12345);
+        PositionDTO positionDTO= new PositionDTO("12345",12345.0,12345.0);
         //when
-        positionService.save(positionEntity);
+        positionService.save(positionDTO);
         //then
         ArgumentCaptor<PositionEntity> positionEntityArgumentCaptor = ArgumentCaptor.forClass(PositionEntity.class);
 
@@ -45,12 +44,12 @@ class PositionServiceTest {
 
         PositionEntity capturedPositionEntity = positionEntityArgumentCaptor.getValue();
 
-        assertThat(capturedPositionEntity).isEqualTo(positionEntity);
+        assertThat(capturedPositionEntity.getDeviceId()).isEqualTo(positionService.createPositionEntity(positionDTO).getDeviceId());
     }
     @Test
     void canCreatePositionEntityFromPositionDTO(){
         //given
-        PositionDTO positionDTO = new PositionDTO("12345",12345,12345);
+        PositionDTO positionDTO = new PositionDTO("12345",12345.0,12345.0);
         //when
         PositionEntity positionEntity = positionService.createPositionEntity(positionDTO);
         //then

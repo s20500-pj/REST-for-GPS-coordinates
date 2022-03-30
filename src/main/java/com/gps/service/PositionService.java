@@ -16,17 +16,11 @@ public class PositionService {
         this.positionRepository = positionRepository;
     }
 
-    public PositionEntity save(PositionEntity positionEntity) {
-        try {
-            return positionRepository.save(positionEntity);
-        } finally {
-            log.info("Position saved successfully");
-        }
+    public PositionDTO save(PositionDTO positionDTO) {
+        positionRepository.save(createPositionEntity(positionDTO));
+        log.info("Position saved successfully");
+        return positionDTO;
 
-    }
-
-    public PositionEntity addPosition(PositionDTO positionDTO) {
-        return save(createPositionEntity(positionDTO));
     }
 
     public PositionEntity createPositionEntity(PositionDTO positionDTO) {

@@ -1,7 +1,6 @@
 package com.gps.controller;
 
 import com.gps.model.PositionDTO;
-import com.gps.model.PositionEntity;
 import com.gps.service.PositionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +20,9 @@ public class PositionController {
     }
 
     @PostMapping("/save/position/")
-    public ResponseEntity<PositionEntity> getPositionDTO(@Valid @RequestBody PositionDTO positionDTO) {
+    public ResponseEntity<PositionDTO> savePositionDTO(@Valid @RequestBody PositionDTO positionDTO) {
         log.info("Received position");
-        return ResponseEntity.ok(positionService.addPosition(positionDTO));
+        return ResponseEntity.ok(positionService.save(positionDTO));
 
     }
 
